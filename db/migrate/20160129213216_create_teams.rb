@@ -7,7 +7,6 @@ class CreateTeams < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_reference :teams, :sport, index: true
     add_reference :teams, :season, index: true
   end
 end

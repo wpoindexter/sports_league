@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130004733) do
+ActiveRecord::Schema.define(version: 20160130181245) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20160130004733) do
     t.string   "status"
     t.string   "email"
     t.string   "phone"
-    t.boolean  "head_coach"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,13 +80,11 @@ ActiveRecord::Schema.define(version: 20160130004733) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "player_id"
-    t.integer  "sport_id"
     t.integer  "season_id"
   end
 
   add_index "registrations", ["player_id"], name: "index_registrations_on_player_id"
   add_index "registrations", ["season_id"], name: "index_registrations_on_season_id"
-  add_index "registrations", ["sport_id"], name: "index_registrations_on_sport_id"
 
   create_table "roster_positions", force: :cascade do |t|
     t.integer "rank"
@@ -114,7 +111,20 @@ ActiveRecord::Schema.define(version: 20160130004733) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "sport_id"
   end
+
+  add_index "seasons", ["sport_id"], name: "index_seasons_on_sport_id"
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
   create_table "sports", force: :cascade do |t|
     t.string   "name"
@@ -124,6 +134,7 @@ ActiveRecord::Schema.define(version: 20160130004733) do
 
   create_table "team_coaches", force: :cascade do |t|
     t.boolean  "head_coach"
+    t.string   "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "team_id"
@@ -133,17 +144,50 @@ ActiveRecord::Schema.define(version: 20160130004733) do
   add_index "team_coaches", ["coach_id"], name: "index_team_coaches_on_coach_id"
   add_index "team_coaches", ["team_id"], name: "index_team_coaches_on_team_id"
 
+  create_table "team_managers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "team_id"
+  end
+
+  add_index "team_managers", ["team_id"], name: "index_team_managers_on_team_id"
+
   create_table "teams", force: :cascade do |t|
     t.integer  "grade1"
     t.integer  "grade2"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "sport_id"
     t.integer  "season_id"
   end
 
   add_index "teams", ["season_id"], name: "index_teams_on_season_id"
-  add_index "teams", ["sport_id"], name: "index_teams_on_sport_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

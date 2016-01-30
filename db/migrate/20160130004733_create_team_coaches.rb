@@ -2,6 +2,7 @@ class CreateTeamCoaches < ActiveRecord::Migration
   def change
     create_table :team_coaches do |t|
       t.boolean :head_coach
+      t.string :role
 
       t.timestamps null: false
     end

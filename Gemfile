@@ -18,6 +18,7 @@ gem 'chronic'
 gem 'bower-rails'
 gem 'haml-rails'
 gem 'devise'
+gem 'activerecord-session_store'
 
 group :development, :test do
   gem 'byebug'
@@ -27,4 +28,5 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rubocop'
+  gem 'letter_opener'
 end
