@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130214131) do
+ActiveRecord::Schema.define(version: 20160130215032) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -167,6 +167,21 @@ ActiveRecord::Schema.define(version: 20160130214131) do
   end
 
   add_index "teams", ["season_id"], name: "index_teams_on_season_id"
+
+  create_table "user_roles", force: :cascade do |t|
+    t.boolean  "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "coach_id"
+    t.integer  "parent_id"
+    t.integer  "player_id"
+  end
+
+  add_index "user_roles", ["coach_id"], name: "index_user_roles_on_coach_id"
+  add_index "user_roles", ["parent_id"], name: "index_user_roles_on_parent_id"
+  add_index "user_roles", ["player_id"], name: "index_user_roles_on_player_id"
+  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

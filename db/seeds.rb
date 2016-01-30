@@ -2,6 +2,9 @@ sport = Sport.create name: 'football'
 season = Season.create start: Chronic.parse('August 1, 2016'), end: Chronic.parse('December 31, 2016'), name: 'Fall 2016', sport: sport
 address = Address.create address1: '1231 Thomas Daniel Way', city: 'Lawrenceville', state: 'GA', postal_code: '30045'
 parent = Parent.create first_name: 'William', last_name: 'Poindexter', email: 'wryanp@gmail.com', phone: '6786419168'
+user = User.create email: 'wryanp@gmail.com', password: '12345678', password_confirmation: '12345678'
+user.confirm!
+UserRole.create user: user, parent: parent
 player1 = Player.create first_name: 'William', middle_name: 'Ryan', last_name: 'Poindexter', birth_date: Chronic.parse('July 18, 2006'), weight: '90', grade: '4', email: 'willryanp@gmail.com', phone: '6786419168', address: address
 player1.parents << parent && player1.save
 player2 = Player.create first_name: 'Maxwell', middle_name: 'Justus', last_name: 'Poindexter', birth_date: Chronic.parse('July 18, 2006'), weight: '', grade: 'P', email: '', phone: '', address: address
@@ -16,3 +19,6 @@ TeamManager.create first_name: 'Ikwo', last_name: 'Poindexter', email: 'inpoinde
 roster_spot = RosterSpot.create player: player1, team: team
 position = Position.create name: 'Linebacker', short_name: 'LB'
 RosterPosition.create roster_spot: roster_spot, position: position, rank: 1
+admin = User.create email: 'admin@admin.com', password: '12345678', password_confirmation: '12345678'
+admin.confirm!
+UserRole.create user: admin, admin: true
