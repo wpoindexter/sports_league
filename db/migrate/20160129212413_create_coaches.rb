@@ -6,6 +6,7 @@ class CreateCoaches < ActiveRecord::Migration
       t.string :status
       t.string :email
       t.string :phone
+      t.boolean :head_coach
 
       t.timestamps null: false
     end

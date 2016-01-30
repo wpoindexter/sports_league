@@ -1,6 +1,6 @@
-class CreatePostions < ActiveRecord::Migration
+class CreatePositions < ActiveRecord::Migration
   def change
-    create_table :postions do |t|
+    create_table :positions do |t|
       t.string :name
 
       t.timestamps null: false
