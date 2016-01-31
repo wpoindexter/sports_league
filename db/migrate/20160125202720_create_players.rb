@@ -4,6 +4,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :first_name
       t.string :middle_name
       t.string :last_name
+      t.string :suffix
       t.date :birth_date
       t.integer :weight
       t.integer :grade

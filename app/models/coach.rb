@@ -13,5 +13,4 @@ class Coach < ActiveRecord::Base
   def sports
     seasons.map(&:sport).uniq
   end
-
 end

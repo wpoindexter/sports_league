@@ -1,6 +1,14 @@
 FactoryGirl.define do
   factory :sport do
-    
-  end
+    trait :football do
+      name 'Football'
+    end
 
+    trait :basketball do
+      name 'Basketball'
+    end
+
+    factory :football, traits: [:football]
+    factory :basketball, traits: [:basketball]
+  end
 end

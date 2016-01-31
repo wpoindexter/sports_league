@@ -1,7 +1,7 @@
 class CreateRegistrations < ActiveRecord::Migration
   def change
     create_table :registrations do |t|
-      t.string :status
+      t.boolean :active
       t.boolean :paid
 
       t.timestamps null: false

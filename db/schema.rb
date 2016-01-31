@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160130215032) do
   create_table "coaches", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "suffix"
     t.string   "status"
     t.string   "email"
     t.string   "phone"
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160130215032) do
   create_table "parents", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "suffix"
     t.string   "email"
     t.string   "phone"
     t.datetime "created_at", null: false
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160130215032) do
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
+    t.string   "suffix"
     t.date     "birth_date"
     t.integer  "weight"
     t.integer  "grade"
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160130215032) do
   end
 
   create_table "registrations", force: :cascade do |t|
-    t.string   "status"
+    t.boolean  "active"
     t.boolean  "paid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,8 +110,8 @@ ActiveRecord::Schema.define(version: 20160130215032) do
   add_index "roster_spots", ["team_id"], name: "index_roster_spots_on_team_id"
 
   create_table "seasons", force: :cascade do |t|
-    t.date     "start"
-    t.date     "end"
+    t.date     "start_date"
+    t.date     "end_date"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -153,8 +156,10 @@ ActiveRecord::Schema.define(version: 20160130215032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "team_id"
+    t.integer  "parent_id"
   end
 
+  add_index "team_managers", ["parent_id"], name: "index_team_managers_on_parent_id"
   add_index "team_managers", ["team_id"], name: "index_team_managers_on_team_id"
 
   create_table "teams", force: :cascade do |t|
