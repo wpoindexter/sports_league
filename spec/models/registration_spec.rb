@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Registration, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have associations' do
+    expect(subject).to belong_to :player
+    expect(subject).to belong_to :season
+  end
+
+  it 'should have delegates' do
+    expect(subject).to delegate_method(:sport).to :season
+  end
 end

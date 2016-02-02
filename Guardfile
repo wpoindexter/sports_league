@@ -33,7 +33,7 @@
 #   }
 # }
 
-guard :rspec, cmd: 'bundle exec rspec' do
+guard :rspec, cmd: 'bundle exec rubocop; bundle exec rspec' do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 

@@ -8,6 +8,6 @@ RSpec.describe Parent, type: :model do
   end
 
   it 'should have delegates' do
-    expect(subject).to delegate_method(:user).to(:user_role)
+    expect(subject).to delegate_method(:user).to :user_role
   end
 end

@@ -9,13 +9,13 @@ RSpec.describe Coach, type: :model do
   end
 
   it 'should have delegates' do
-    expect(subject).to delegate_method(:user).to(:user_role)
+    expect(subject).to delegate_method(:user).to :user_role
   end
 
   it 'should return unique seasons where this coach has coached' do
     coach = create :coach
     fall_2014 = create :football_season, start_date: Chronic.parse('August 1, 2014')
-    team_2014 = create :team, season: fall_2014 # no coach
+    create :team, season: fall_2014 # no coach
     fall_2015 = create :football_season, start_date: Chronic.parse('August 1, 2015')
     team_2015 = create :team, season: fall_2015
     team_2015.assign_coach coach

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :registration do
     player
+    association :season, factory: :football_season
 
     trait :active do
       active true
