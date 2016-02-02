@@ -4,10 +4,15 @@ FactoryGirl.define do
     end_date Time.zone.today + 3.months
     name 'Season 1'
 
-    trait :football do
+    trait :football_sport do
       association :sport, factory: :football
     end
 
-    factory :football_season, traits: [:football]
+    trait :basketball_sport do
+      association :sport, factory: :basketball
+    end
+
+    factory :football_season, traits: [:football_sport]
+    factory :basketball_season, traits: [:basketball_sport]
   end
 end

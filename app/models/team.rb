@@ -26,4 +26,9 @@ class Team < ActiveRecord::Base
     end
     players_on_depth_chart
   end
+
+  def assign_coach(coach)
+    coaches << coach
+    save
+  end
 end

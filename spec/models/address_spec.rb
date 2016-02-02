@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should have associations' do
+    expect(subject).to belong_to :coach
+    expect(subject).to belong_to :parent
+    expect(subject).to belong_to :player
+  end
 end
