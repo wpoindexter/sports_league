@@ -17,3 +17,6 @@ Rails/HasAndBelongsToMany:
   Enabled: false
 RedundantSelf:
   Enabled: false
+SymbolProc:
+  Exclude:
+    - spec/factories/users.rb

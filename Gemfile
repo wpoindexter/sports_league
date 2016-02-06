@@ -27,6 +27,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'parallel_tests'
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :development do
@@ -37,5 +39,6 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
   gem 'shoulda-matchers'
 end

@@ -34,4 +34,23 @@ RSpec.describe Sport, type: :model do
     expect(sport.coaches).to include ac1.coach
     expect(sport.coaches).to include ac2.coach
   end
+
+  it 'should get teams for a sport' do
+    season = create :football_season
+    sport = season.sport
+    teams = create_pair :team, season: season
+    expect(sport.teams.size).to eq 2
+    expect(sport.teams).to include teams.first
+    expect(sport.teams).to include teams.last
+  end
+
+  it 'should get players for a sport' do
+    season = create :football_season
+    sport = season.sport
+    player1 = create(:registration, season: season).player
+    player2 = create(:registration, season: season).player
+    expect(sport.players.size).to eq 2
+    expect(sport.players).to include player1
+    expect(sport.players).to include player2
+  end
 end

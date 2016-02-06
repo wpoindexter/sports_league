@@ -3,7 +3,7 @@ FactoryGirl.define do
     team
 
     trait :parent do
-      parent
+      association :parent, factory: :mother
     end
 
     trait :anonymous do

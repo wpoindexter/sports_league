@@ -10,8 +10,8 @@ class UserRole < ActiveRecord::Base
   PARENT = 'PARENT'.freeze
 
   def role
-    { role_name: COACH, role: coach } unless coach.nil?
-    { role_name: PLAYER, role: player } unless player.nil?
-    { role_name: PARENT, role: parent } unless parent.nil?
+    return { role_name: COACH, role: coach } unless coach.nil?
+    return { role_name: PLAYER, role: player } unless player.nil?
+    return { role_name: PARENT, role: parent } unless parent.nil?
   end
 end
