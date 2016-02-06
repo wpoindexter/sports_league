@@ -26,7 +26,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'guard-rspec'
-  # gem 'parallel_tests' Seems like we don't need this yet...tests are faster on one processor
+  gem 'parallel_tests'
 end
 
 group :development do
