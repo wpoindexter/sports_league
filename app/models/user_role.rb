@@ -5,6 +5,10 @@ class UserRole < ActiveRecord::Base
   belongs_to :parent
   belongs_to :player
 
+  accepts_nested_attributes_for :coach
+  accepts_nested_attributes_for :player
+  accepts_nested_attributes_for :parent
+
   COACH = 'COACH'.freeze
   PLAYER = 'PLAYER'.freeze
   PARENT = 'PARENT'.freeze

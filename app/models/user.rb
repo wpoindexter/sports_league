@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :user_roles
 
+  accepts_nested_attributes_for :user_roles
+
   def admin?
     user_roles.each { |user_role| return true if user_role.admin? }
     false

@@ -19,6 +19,7 @@ gem 'bower-rails'
 gem 'haml-rails'
 gem 'devise'
 gem 'activerecord-session_store'
+gem 'bootstrap-sass-extras'
 
 group :development, :test do
   gem 'byebug'

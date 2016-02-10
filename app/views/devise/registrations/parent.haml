@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .login-panel.panel.panel-default
+        .panel-heading
+          %h3.panel-title Create a parent account
+        .panel-body
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            %fieldset
+              .well
+                %h4 Account Info
+                %hr
+                .form-group
+                  = f.label :email
+                  = f.email_field :email, class: 'form-control', autofocus: true, placeholder: 'E-mail', required: ''
+                .form-group
+                  = f.label :password
+                  = f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Password', required: ''
+                  - if @minimum_password_length
+                    %small
+                      %em (#{@minimum_password_length} characters minimum)
+                .form-group
+                  = f.label 'Confirm Password'
+                  = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off', placeholder: 'Confirm Password', required: ''
+              %h4 Parent Info
+              %hr
+              = f.fields_for :user_roles, resource.user_roles.build do |user_roles_form|
+                = user_roles_form.fields_for :parent, resource.user_roles.build.build_parent do |parent_form|
+                  .form-group
+                    = parent_form.label :first_name, 'First Name'
+                    = parent_form.text_field :first_name, class: 'form-control', placeholder: 'First Name', required: ''
+                  .form-group
+                    = parent_form.label :last_name, 'Last Name'
+                    = parent_form.text_field :last_name, class: 'form-control', placeholder: 'Last Name', required: ''
+                  .form-group
+                    = parent_form.label :phone, 'Phone Number'
+                    = parent_form.phone_field :phone, class: 'form-control', placeholder: 'Phone Number', required: ''
+              = f.submit 'Create Parent Account', class: 'btn btn-lg btn-success btn-block'
+      = render 'devise/shared/links'
