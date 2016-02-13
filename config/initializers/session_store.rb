@@ -1,1 +1,1 @@
-Rails.application.config.session_store :active_record_store, key: '_kirkwood_session'
+Rails.application.config.session_store :active_record_store, key: '_sports_league_session'

@@ -1,2 +1,2 @@
-#kirkwood
-Kirkwood-Webster Junior Football
+#sports_league
+App for Sports League Organization
