@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe UsersController, type: :controller do
   describe '#show' do
     it 'should redirect if not logged in' do

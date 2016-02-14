@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe RosterSpot, type: :model do
   it 'should have associations' do
     expect(subject).to belong_to :player
