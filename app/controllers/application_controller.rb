@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # :nocov:
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit :email, :password, :password_confirmation, user_roles_attributes: [parent_attributes: [:first_name, :last_name, :phone]]
