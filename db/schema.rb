@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130215032) do
+ActiveRecord::Schema.define(version: 20160214161602) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20160130215032) do
     t.integer "parent_id", null: false
     t.integer "player_id", null: false
   end
+
+  create_table "player_authorizations", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "parent_id"
+  end
+
+  add_index "player_authorizations", ["parent_id"], name: "index_player_authorizations_on_parent_id"
 
   create_table "players", force: :cascade do |t|
     t.string   "first_name"
